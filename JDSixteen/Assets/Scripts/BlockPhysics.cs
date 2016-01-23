@@ -14,7 +14,7 @@ public class BlockPhysics : MonoBehaviour {
 
     public bool beingDragged;
 
-    public Vector3 anchorPoint;
+    //public Vector3 anchorPoint;
     private GridController grid;
 
     void Start()
@@ -24,22 +24,16 @@ public class BlockPhysics : MonoBehaviour {
 
     void FixedUpdate()
     {
-        int gridX = (int)Mathf.Floor(transform.position.x);
-        float anchorX = gridX + 0.5f;
-        int gridY = (int)Mathf.Floor(transform.position.y);
-        float anchorY = gridY + 0.5f;
-        anchorPoint = new Vector3(anchorX, anchorY);
-        gridX = gridX + (grid.width / 2);
-        gridY = gridY + (grid.height / 2);
-        //Announce position to GridController
-        grid.ReportBlockGridPosition(gridX, gridY, this);
-        //grid.gridPoints[gridX, gridY] = this;
     }
 
     void OnMouseDown()
     {
         beingDragged = true;
         GetComponent<Rigidbody2D>().isKinematic = false;
+
+        //Announce position to GridController
+        Vector2 gridPos = GridPosition();
+        grid.SetBlockGridPosition((int)gridPos.x, (int)gridPos.y, null);
     }
 
     void OnMouseDrag()
@@ -53,7 +47,10 @@ public class BlockPhysics : MonoBehaviour {
         toDragPos.x = Mathf.Clamp(toDragPos.x, -maxSnapForce, maxSnapForce);
         toDragPos.y = Mathf.Clamp(toDragPos.y, -maxSnapForce, maxSnapForce);
         GetComponent<Rigidbody2D>().velocity = toDragPos;
-        //transform.position = dragPosition;
+
+        //Check for combination
+        Vector2 gridPos = GridPosition();
+        grid.CheckBlockGridCombination((int)gridPos.x, (int)gridPos.y, this);
     }
 
     void OnMouseUp()
@@ -61,10 +58,23 @@ public class BlockPhysics : MonoBehaviour {
         beingDragged = false;
         GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        //Announce position to GridController
+        Vector2 gridPos = GridPosition();
+        grid.SetBlockGridPosition((int)gridPos.x, (int)gridPos.y, this);
+    }
+
+    private Vector2 GridPosition()
+    {
+        int gridX = (int)Mathf.Floor(transform.position.x);
+        int gridY = (int)Mathf.Floor(transform.position.y);
+        gridX = gridX + (grid.width / 2);
+        gridY = gridY + (grid.height / 2);
+        return new Vector2(gridX, gridY);
     }
 
     //Mouse world position on the near clipping plane of the camera
-    public Vector2 WorldMousePos(Vector3 mousePos)
+    private Vector2 WorldMousePos(Vector3 mousePos)
     {
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0f));
         return new Vector2(worldPos.x, worldPos.y);
