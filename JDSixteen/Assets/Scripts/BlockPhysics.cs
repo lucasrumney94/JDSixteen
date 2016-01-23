@@ -24,26 +24,15 @@ public class BlockPhysics : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (!beingDragged)
-        {
-            int gridX = (int)Mathf.Floor(transform.position.x);
-            float anchorX = gridX + 0.5f;
-            int gridY = (int)Mathf.Floor(transform.position.y);
-            float anchorY = gridY + 0.5f;
-            anchorPoint = new Vector3(anchorX, anchorY);
-            gridX = gridX + (grid.width / 2);
-            gridY = gridY + (grid.height / 2);
-            grid.gridPoints[gridX, gridY] = this;
-
-
-            //Apply a translation to keep the block stuck to anchor point
-            transform.position = Vector3.Lerp(transform.position, anchorPoint, anchorSnapSpeed);
-            if(Vector3.Distance(transform.position, anchorPoint) < minInstantSnapDistance)
-            {
-                transform.position = anchorPoint;
-            }
-            //GetComponent<Rigidbody2D>().AddForce(toAnchor * anchorForce);
-        }
+        int gridX = (int)Mathf.Floor(transform.position.x);
+        float anchorX = gridX + 0.5f;
+        int gridY = (int)Mathf.Floor(transform.position.y);
+        float anchorY = gridY + 0.5f;
+        anchorPoint = new Vector3(anchorX, anchorY);
+        gridX = gridX + (grid.width / 2);
+        gridY = gridY + (grid.height / 2);
+        //Announce position to GridController
+        grid.gridPoints[gridX, gridY] = this;
     }
 
     void OnMouseDown()

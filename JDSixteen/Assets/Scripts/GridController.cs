@@ -16,17 +16,34 @@ public class GridController : MonoBehaviour {
 
     void LateUpdate()
     {
+        //After position of all blocks in the scene has been established
+        //Working left to right, bottom to top
         for (int i = 0; i < width; i++)
         {
-            for (int j = 1; j < height; j++)
+            for (int j = 0; j < height; j++)
             {
-                float xPos = (float)i - ((float)(width - 1) / 2);
-                float yPos = (float)j - ((float)(height - 1) / 2);
-                if(gridPoints[i,j - 1] == null)
+                if (gridPoints[i,j] != null)
                 {
-                    gridPoints[i, j].anchorPoint.y -= 1f;
-                    gridPoints[i, j - 1] = gridPoints[i, j];
-                    gridPoints[i, j] = null;
+                    BlockPhysics block = gridPoints[i, j];
+                    //Find all blocks that have an empty space below them
+                    if (j > 0 && gridPoints[i, j - 1] == null)
+                    {
+                        //Set their anchor points to the space below
+                        block.anchorPoint.y -= 1f;
+                        //and reassign their position in the grid
+                        gridPoints[i, j - 1] = gridPoints[i, j];
+                        gridPoints[i, j] = null;
+                    }
+                    
+                    if(block.beingDragged == false)
+                    {
+                        //Apply a translation to keep the block stuck to anchor point
+                        block.transform.position = Vector3.Lerp(block.transform.position, block.anchorPoint, block.anchorSnapSpeed);
+                        if (Vector3.Distance(block.transform.position, block.anchorPoint) < block.minInstantSnapDistance)
+                        {
+                            block.transform.position = block.anchorPoint;
+                        }
+                    }
                 }
             }
         }
@@ -50,17 +67,20 @@ public class GridController : MonoBehaviour {
         }
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    if(gridPoints != null)
-    //    {
-    //        for (int i = 0; i < width; i++)
-    //        {
-    //            for (int j = 0; j < height; j++)
-    //            {
-    //                Gizmos.DrawCube(gridPoints[i, j], Vector3.one * 0.05f);
-    //            }
-    //        }
-    //    }
-    //}
+    void OnDrawGizmos()
+    {
+        if (gridPoints != null)
+        {
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
+                {
+                    if(gridPoints[i, j] != null)
+                    {
+                        Gizmos.DrawCube(gridPoints[i, j].transform.position, Vector3.one * 0.1f);
+                    }
+                }
+            }
+        }
+    }
 }
