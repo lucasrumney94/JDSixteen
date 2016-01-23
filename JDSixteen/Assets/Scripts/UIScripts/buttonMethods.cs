@@ -38,6 +38,8 @@ public class buttonMethods : MonoBehaviour
     }
     public void restart()
     {
+        gameLost = false;
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
