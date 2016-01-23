@@ -61,7 +61,8 @@ public class GridController : MonoBehaviour {
             if(gridPoints[x,y].blockRank == block.blockRank)
             {
                 BlockPhysics newBlock = Instantiate(CombineBlocks(gridPoints[x, y], block)) as BlockPhysics;
-                newBlock.transform.position = gridPoints[x, y].anchorPoint;
+                newBlock.transform.position = block.anchorPoint;
+                newBlock.anchorPoint = block.anchorPoint;
                 Destroy(block.gameObject);
                 Destroy(gridPoints[x, y].gameObject);
                 gridPoints[x, y] = newBlock;
