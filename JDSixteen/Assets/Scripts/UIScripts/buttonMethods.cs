@@ -28,6 +28,10 @@ public class buttonMethods : MonoBehaviour {
         Time.timeScale = 1.0f;
         pauseMenu.enabled = false;
     }
+    public void restart()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
 
 
 }
