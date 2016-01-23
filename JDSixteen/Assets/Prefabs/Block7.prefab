@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMousePos: {x: 0, y: 0, z: 0}
-  blockRank: 1
+  blockRank: 7
   mouseSnapForce: 10
   maxSnapForce: 50
   anchorSnapSpeed: 0.2
@@ -147,6 +147,10 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 1699895477e9dfd49ac2a78ebc7fb524, type: 2}
+    - target: {fileID: 0}
+      propertyPath: blockRank
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179618}
