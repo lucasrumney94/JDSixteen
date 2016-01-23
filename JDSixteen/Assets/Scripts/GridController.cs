@@ -25,6 +25,8 @@ public class GridController : MonoBehaviour {
                 if(gridPoints[i,j - 1] == null)
                 {
                     gridPoints[i, j].anchorPoint.y -= 1f;
+                    gridPoints[i, j - 1] = gridPoints[i, j];
+                    gridPoints[i, j] = null;
                 }
             }
         }
