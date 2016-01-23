@@ -16,6 +16,19 @@ public class GridController : MonoBehaviour {
 
     void LateUpdate()
     {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 1; j < height; j++)
+            {
+                float xPos = (float)i - ((float)(width - 1) / 2);
+                float yPos = (float)j - ((float)(height - 1) / 2);
+                if(gridPoints[i,j - 1] == null)
+                {
+                    gridPoints[i, j].anchorPoint.y -= 1f;
+                }
+            }
+        }
+
         InitializeGrid();
     }
 
