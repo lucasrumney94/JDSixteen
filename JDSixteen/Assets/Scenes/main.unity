@@ -370,7 +370,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 445d4c763f81ee64c91bbeed6375018f, type: 2}
   m_IsPrefabParent: 0
-<<<<<<< HEAD
 --- !u!1 &1629978725
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,50 +412,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 8, y: 1}
-=======
---- !u!1001 &1524164760
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.069000274
-      objectReference: {fileID: 0}
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.039604437
-      objectReference: {fileID: 0}
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -4.046875
-      objectReference: {fileID: 0}
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 416592, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3ab28738a2823ed4eb0de7a4f3156bcd, type: 2}
-  m_IsPrefabParent: 0
->>>>>>> 2af2ab9fe20b4d81bce1250ec095bb167b611439
 --- !u!1 &1730997062
 GameObject:
   m_ObjectHideFlags: 0
