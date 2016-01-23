@@ -12,7 +12,7 @@ GameObject:
   - 61: {fileID: 6190080}
   - 50: {fileID: 5042788}
   - 114: {fileID: 11485242}
-  m_Layer: 8
+  m_Layer: 17
   m_Name: Block10
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Layer
-      value: 8
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString

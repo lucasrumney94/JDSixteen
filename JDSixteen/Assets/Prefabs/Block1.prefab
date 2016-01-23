@@ -76,6 +76,7 @@ MonoBehaviour:
   currentMousePos: {x: 0, y: 0, z: 0}
   blockRank: 1
   mouseSnapForce: 10
+  maxSnapForce: 50
   anchorSnapSpeed: 0.2
   minInstantSnapDistance: 0.01
   beingDragged: 0
