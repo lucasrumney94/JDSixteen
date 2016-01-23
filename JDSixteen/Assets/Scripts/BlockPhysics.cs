@@ -8,6 +8,7 @@ public class BlockPhysics : MonoBehaviour {
     public int blockRank = 1;
 
     public float mouseSnapForce = 5f;
+    public float maxSnapForce = 50f;
     public float anchorSnapSpeed = 0.2f;
     public float minInstantSnapDistance = 0.01f;
 
@@ -39,15 +40,22 @@ public class BlockPhysics : MonoBehaviour {
         }
     }
 
-    void OnMouseDrag()
+    void OnMouseDown()
     {
         beingDragged = true;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+
+    void OnMouseDrag()
+    {
         currentMousePos = Input.mousePosition;
         Vector2 dragPosition = WorldMousePos(currentMousePos);
         float deltaX = dragPosition.x - transform.position.x;
         float deltaY = dragPosition.y - transform.position.y;
         float distanceSquared = Mathf.Pow(Vector3.Distance(dragPosition, transform.position), 2f);
         Vector2 toDragPos = new Vector2(deltaX, deltaY).normalized * mouseSnapForce * distanceSquared;
+        toDragPos.x = Mathf.Clamp(toDragPos.x, -maxSnapForce, maxSnapForce);
+        toDragPos.y = Mathf.Clamp(toDragPos.y, -maxSnapForce, maxSnapForce);
         GetComponent<Rigidbody2D>().velocity = toDragPos;
         //transform.position = dragPosition;
     }
@@ -55,6 +63,7 @@ public class BlockPhysics : MonoBehaviour {
     void OnMouseUp()
     {
         beingDragged = false;
+        GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
