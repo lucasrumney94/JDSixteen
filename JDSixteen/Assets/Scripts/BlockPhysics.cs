@@ -55,6 +55,7 @@ public class BlockPhysics : MonoBehaviour {
     void OnMouseUp()
     {
         beingDragged = false;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     //Mouse world position on the near clipping plane of the camera
