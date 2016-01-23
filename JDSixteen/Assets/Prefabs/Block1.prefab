@@ -75,6 +75,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMousePos: {x: 0, y: 0, z: 0}
   blockRank: 1
+  anchorSnapSpeed: 0.2
+  minInstantSnapDistance: 0.01
+  beingDragged: 0
 --- !u!212 &21269202
 SpriteRenderer:
   m_ObjectHideFlags: 1
