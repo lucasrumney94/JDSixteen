@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class buttonMethods : MonoBehaviour {
 
@@ -30,7 +31,7 @@ public class buttonMethods : MonoBehaviour {
     }
     public void restart()
     {
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().ToString(),LoadSceneMode.Single);
     }
 
 

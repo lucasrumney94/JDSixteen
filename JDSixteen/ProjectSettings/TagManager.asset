@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Block
   - Grid
+  - Timer
   layers:
   - Default
   - TransparentFX
