@@ -32,7 +32,8 @@ public class BlockPhysics : MonoBehaviour {
         gridX = gridX + (grid.width / 2);
         gridY = gridY + (grid.height / 2);
         //Announce position to GridController
-        grid.gridPoints[gridX, gridY] = this;
+        grid.ReportBlockGridPosition(gridX, gridY, this);
+        //grid.gridPoints[gridX, gridY] = this;
     }
 
     void OnMouseDown()
