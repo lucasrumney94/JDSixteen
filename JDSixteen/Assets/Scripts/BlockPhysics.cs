@@ -14,23 +14,41 @@ public class BlockPhysics : MonoBehaviour {
 
     public bool beingDragged;
 
-    private GameObject grid;
+    private GridController grid;
 
     void Start()
     {
-        grid = GameObject.FindGameObjectWithTag("Grid");
+        grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<GridController>();
     }
 
     void FixedUpdate()
     {
         if (!beingDragged)
         {
-            //Find closest vector3 in grid.gridPoints[,]
-            float anchorX = Mathf.Floor(transform.position.x) + 0.5f;
-            float anchorY = Mathf.Floor(transform.position.y) + 0.5f;
+            int gridX = (int)Mathf.Floor(transform.position.x);
+            float anchorX = gridX + 0.5f;
+            int gridY = (int)Mathf.Floor(transform.position.y);
+            float anchorY = gridY + 0.5f;
             Vector3 anchorPoint = new Vector3(anchorX, anchorY);
+            gridX = gridX + (grid.width / 2);
+            gridY = gridY + (grid.height / 2);
+            if(gridY > 0)
+            {
+                if (grid.gridPoints[gridX, gridY - 1] != null)
+                {
+                    grid.gridPoints[gridX, gridY] = this;
+                }
+                else
+                {
+                    anchorPoint.y -= 1f;
+                }
+            }
+            else
+            {
+                grid.gridPoints[gridX, gridY] = this;
+            }
 
-            //Apply a translation to keep the block stuck to that point
+            //Apply a translation to keep the block stuck to anchor point
             transform.position = Vector3.Lerp(transform.position, anchorPoint, anchorSnapSpeed);
             if(Vector3.Distance(transform.position, anchorPoint) < minInstantSnapDistance)
             {
