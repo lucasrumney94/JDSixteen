@@ -13,9 +13,13 @@ public class gameTimer : MonoBehaviour
     private float actualTime;
     private float newStartTime;
 
+    private GridController grid;
+
     // Use this for initialization
     void Start()
     {
+        grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<GridController>();
+
         actualTime = startTime + offsetForSlider;
         newStartTime = startTime + offsetForSlider;
 
@@ -32,7 +36,7 @@ public class gameTimer : MonoBehaviour
         timerSlider.value = actualTime;
         if (actualTime <= offsetForSlider)
         {
-            //TODO: call method that spawns another line
+            grid.CreateNewBlockRow();
 
             startTime = newStartTime;
             actualTime = startTime;

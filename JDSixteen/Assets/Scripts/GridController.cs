@@ -19,13 +19,17 @@ public class GridController : MonoBehaviour {
         anchorPoints = new Vector3[width, height];
         InitializeGrid();
         FillAnchorPoints();
+
+        CreateNewBlockRow();
+        CreateNewBlockRow();
+        CreateNewBlockRow();
     }
 
     void Update()
     {
         if (spawnRow)
         {
-            CreateNewBlockRow(3);
+            CreateNewBlockRow();
             spawnRow = false;
         }
     }
@@ -123,7 +127,7 @@ public class GridController : MonoBehaviour {
         }
     }
 
-    public void CreateNewBlockRow(int highestRank)
+    public void CreateNewBlockRow()
     {
         for (int i = 0; i < width; i++)
         {
@@ -132,13 +136,29 @@ public class GridController : MonoBehaviour {
                 gridPoints[i, j] = gridPoints[i, j - 1];
             }
 
-            int newIndex = (int)Random.Range(0f, highestRank);
+            int newIndex = (int)Random.Range(0f, HighestRank());
+            //Check if the block to be spawned would match the rank of the one above it
+            //If so, decrease its rank by one, or if the rank is one already, increase it
+            if(gridPoints[i, 0] != null)
+            {
+                if (gridPoints[i, 0].blockRank == newIndex + 1)
+                {
+                    if (newIndex == 0) newIndex = 1;
+                    else newIndex--;
+                }
+            }
             BlockPhysics newBlock = Instantiate(blockPrefabs[newIndex]);
-            float xPos = (float)i - ((float)width / 2f);
+            float xPos = (float)i - (((float)width - 1f) / 2f);
             float yPos = (-(float)height / 2f) - 1f;
             newBlock.transform.position = new Vector3(xPos, yPos);
             gridPoints[i, 0] = newBlock;
         }
+    }
+
+    //Check score handler to see what the highest spawned in a new block row can be
+    private int HighestRank()
+    {
+        return 3;
     }
 
     private void InitializeGrid()
@@ -163,8 +183,8 @@ public class GridController : MonoBehaviour {
         {
             for (int j = 0; j < height; j++)
             {
-                float xPos = (float)i - ((float)(width - 1) / 2);
-                float yPos = (float)j - ((float)(height - 1) / 2);
+                float xPos = (float)i - ((float)(width - 1) / 2f);
+                float yPos = (float)j - ((float)(height - 1) / 2f);
                 anchorPoints[i, j] = new Vector3(xPos, yPos);
             }
         }
