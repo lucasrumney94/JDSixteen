@@ -8,6 +8,8 @@ public class GridController : MonoBehaviour {
     public int width = 6;
     public int height = 6;
     public float scale = 1f;
+    public int maxRank = 3;
+
     //These should be ordered correctly, block rank increases are based on the order of this list
     public BlockPhysics[] blockPrefabs;
     public BlockPhysics[,] gridPoints;
@@ -115,6 +117,10 @@ public class GridController : MonoBehaviour {
         if(a.blockRank == b.blockRank && a.blockRank < blockPrefabs.Length)
         {
             BlockPhysics newBlock = Instantiate(blockPrefabs[a.blockRank]) as BlockPhysics;
+            if(newBlock.blockRank == blockPrefabs.Length)
+            {
+                AddHighestBlockToScore(newBlock);
+            }
             newBlock.transform.position = a.transform.position;
             Destroy(a.gameObject);
             Destroy(b.gameObject);
@@ -125,6 +131,15 @@ public class GridController : MonoBehaviour {
             Debug.Log("can't combine, block ranks should match!");
             return null;
         }
+    }
+
+    private void AddHighestBlockToScore(BlockPhysics block)
+    {
+        //Play some kind of particle effect
+
+
+        //Remove the block from the game and clear the grid space
+        Destroy(block.gameObject, 0.5f);
     }
 
     public void CreateNewBlockRow()
@@ -155,10 +170,21 @@ public class GridController : MonoBehaviour {
         }
     }
 
+    private void CheckForGameOver()
+    {
+        for(int i = 0; i < width; i++)
+        {
+            if(gridPoints[i, height - 1] != null)
+            {
+                //Trigger game over
+            }
+        }
+    }
+
     //Check score handler to see what the highest spawned in a new block row can be
     private int HighestRank()
     {
-        return 3;
+        return maxRank;
     }
 
     private void InitializeGrid()
