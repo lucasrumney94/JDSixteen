@@ -74,7 +74,7 @@ MonoBehaviour:
   speed: 0.01
   randomScaleSpread: 0.1
   randomSpeedSpread: 0.005
-  ySpread: 1.2
+  ySpread: 1
 --- !u!212 &21209056
 SpriteRenderer:
   m_ObjectHideFlags: 1

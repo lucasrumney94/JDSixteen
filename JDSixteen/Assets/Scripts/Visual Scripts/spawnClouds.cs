@@ -26,7 +26,7 @@ public class spawnClouds : MonoBehaviour {
     {
         for (;;)
         {
-            GameObject temp = Instantiate(cloud, new Vector3(20, 3, 0), Quaternion.identity) as GameObject;
+            GameObject temp = Instantiate(cloud, new Vector3(13, 2, 0), Quaternion.identity) as GameObject;
             temp.GetComponent<moveMeLeft>().speed = speed + Random.Range(-randomSpeedSpread, randomSpeedSpread);
             float ScaleFactor = temp.transform.localScale.x + Random.Range(-randomScaleSpread, randomScaleSpread);
             temp.transform.localScale =new Vector3(ScaleFactor, ScaleFactor, ScaleFactor);
