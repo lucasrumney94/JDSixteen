@@ -14,10 +14,13 @@ public class moveMeLeft : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        gameObject.transform.Translate(new Vector3(-speed,0.0f,0.0f));
-        if (gameObject.transform.position.x < -20.0f)
+        if (!GameObject.FindGameObjectWithTag("UI").GetComponent<buttonMethods>().paused)
         {
-            Destroy(gameObject);
+            gameObject.transform.Translate(new Vector3(-speed, 0.0f, 0.0f));
+            if (gameObject.transform.position.x < -20.0f)
+            {
+                Destroy(gameObject);
+            }
         }
 	}
 }
