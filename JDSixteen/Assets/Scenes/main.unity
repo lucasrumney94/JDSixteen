@@ -312,10 +312,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11424616, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 22483168, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -388,77 +384,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22421824, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 22421824, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430298, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0.83100003
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430298, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.030014038
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430298, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22418224, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0.82900006
-      objectReference: {fileID: 0}
-    - target: {fileID: 22418224, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.049972534
-      objectReference: {fileID: 0}
-    - target: {fileID: 22418224, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0.10003996
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430298, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0.77386785
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430298, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.01247406
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430298, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_SizeDelta.y
-      value: -0.024994
-      objectReference: {fileID: 0}
-    - target: {fileID: 22430298, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.96729356
-      objectReference: {fileID: 0}
-    - target: {fileID: 11424616, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11424616, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 11424616, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1029192688}
-    - target: {fileID: 11424616, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: resetScore
+    - target: {fileID: 22421824, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11424616, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 140046, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
-      propertyPath: m_TagString
-      value: UI
+    - target: {fileID: 22421824, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
