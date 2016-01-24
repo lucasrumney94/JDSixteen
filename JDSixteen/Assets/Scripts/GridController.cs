@@ -40,6 +40,8 @@ public class GridController : MonoBehaviour {
                 if (gridPoints[i,j] != null)
                 {
                     BlockPhysics block = gridPoints[i, j];
+                    Vector3 anchor = anchorPoints[i, j] + transform.position;
+
                     //Find all blocks that have an empty space below them
                     if (j > 0 && gridPoints[i, j - 1] == null)
                     {
@@ -50,13 +52,17 @@ public class GridController : MonoBehaviour {
                     //Find all blocks that have a block of the same rank below them
                     else if(j > 0 && (gridPoints[i, j - 1].blockRank == block.blockRank))
                     {
-                        gridPoints[i, j - 1] = CombineBlocks(gridPoints[i, j - 1], block);
-                        gridPoints[i, j] = null;
+                        anchor = anchorPoints[i, j - 1] + transform.position;
+                        //Check if the blocks are close enough together to combine
+                        if(Vector3.Distance(gridPoints[i, j - 1].transform.position, block.transform.position) < scale / 2f)
+                        {
+                            gridPoints[i, j - 1] = CombineBlocks(gridPoints[i, j - 1], block);
+                            gridPoints[i, j] = null;
+                        }
                     }
                     
                     if(block.beingDragged == false)
                     {
-                        Vector3 anchor = anchorPoints[i, j] + transform.position;
                         //Apply a translation to keep the block stuck to anchor point
                         block.transform.position = Vector3.Lerp(block.transform.position, anchor, block.anchorSnapSpeed);
                         if (Vector3.Distance(block.transform.position, anchor) < block.minInstantSnapDistance)
@@ -75,9 +81,9 @@ public class GridController : MonoBehaviour {
     //Checks if there is already another block in the current position and tries to combine them if there is
     public void CheckBlockGridCombination(int x, int y, BlockPhysics block)
     {
-        x = Mathf.Clamp(0, x, width);
-        y = Mathf.Clamp(0, y, height);
-        if (gridPoints[x, y] != null)// && gridPoints[x, y] != block)
+        x = Mathf.Clamp(x, 0, width);
+        y = Mathf.Clamp(y, 0, height);
+        if (gridPoints[x, y] != null && gridPoints[x, y] != block)
         {
             if (gridPoints[x, y].blockRank == block.blockRank)
             {
@@ -90,9 +96,13 @@ public class GridController : MonoBehaviour {
     //Called when the user moves a block with the mouse
     public void SetBlockGridPosition(int x, int y, BlockPhysics block)
     {
-        x = Mathf.Clamp(0, x, width);
-        y = Mathf.Clamp(0, y, height);
-        gridPoints[x, y] = block;
+        x = Mathf.Clamp(x, 0, width);
+        y = Mathf.Clamp(y, 0, height);
+        if (block == null || gridPoints[x, y] == null)
+        {
+            gridPoints[x, y] = block;
+        }
+        else Debug.Log("Tried to place block on top of another block!", block);
     }
 
     //Instantiates a new block from the combination of a and b, removes a and b from the scene, and returns the created object
@@ -113,7 +123,7 @@ public class GridController : MonoBehaviour {
         }
     }
 
-    private void CreateNewBlockRow(int highestRank)
+    public void CreateNewBlockRow(int highestRank)
     {
         for (int i = 0; i < width; i++)
         {
@@ -170,7 +180,7 @@ public class GridController : MonoBehaviour {
                 {
                     if(gridPoints[i, j] != null)
                     {
-                        Gizmos.DrawCube(gridPoints[i, j].transform.position, Vector3.one * 0.1f);
+                        Gizmos.DrawCube(anchorPoints[i, j], Vector3.one * 0.15f);
                     }
                 }
             }
