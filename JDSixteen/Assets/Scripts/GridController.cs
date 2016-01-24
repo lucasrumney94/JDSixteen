@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class GridController : MonoBehaviour {
@@ -176,7 +176,8 @@ public class GridController : MonoBehaviour {
         {
             if(gridPoints[i, height - 1] != null)
             {
-                //Trigger game over
+                //Triggers Bool in UI that activates the Game Over UI
+                GameObject.FindGameObjectWithTag("UI").GetComponent<buttonMethods>().gameLost = true;
             }
         }
     }
