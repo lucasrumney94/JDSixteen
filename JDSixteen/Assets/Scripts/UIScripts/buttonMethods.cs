@@ -36,6 +36,21 @@ public class buttonMethods : MonoBehaviour
         Time.timeScale = 1.0f;
         pauseMenu.enabled = false;
     }
+    public void togglePause()
+    {
+        paused = !paused;
+        pauseMenu.enabled = paused;
+        if (paused)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
+
+    }
+
     public void restart()
     {
         gameLost = false;
