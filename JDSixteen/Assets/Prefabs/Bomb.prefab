@@ -80,7 +80,8 @@ MonoBehaviour:
   anchorSnapSpeed: 0.2
   minInstantSnapDistance: 0.01
   beingDragged: 0
-  anchorPoint: {x: 0, y: 0, z: 0}
+  initialGridPosition: 
+  clearedInitialPosition: 0
 --- !u!212 &21269202
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -107,8 +108,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f360189cebfe34e5290a1dfa9a1c76cc, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0c82dd0bb0579455a9b4939c768e9266, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &100100000
@@ -133,7 +134,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f360189cebfe34e5290a1dfa9a1c76cc,
+      objectReference: {fileID: 21300000, guid: 0c82dd0bb0579455a9b4939c768e9266,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
@@ -165,15 +166,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

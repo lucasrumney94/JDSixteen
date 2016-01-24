@@ -15,7 +15,7 @@ public class moveMeLeft : MonoBehaviour {
 	void Update ()
     {
         gameObject.transform.Translate(new Vector3(-speed,0.0f,0.0f));
-        if (gameObject.transform.position.x < -100)
+        if (gameObject.transform.position.x < -20.0f)
         {
             Destroy(gameObject);
         }
