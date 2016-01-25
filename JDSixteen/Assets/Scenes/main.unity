@@ -214,7 +214,7 @@ MonoBehaviour:
   width: 6
   height: 6
   scale: 1
-  maxRank: 12
+  maxRank: 3
   blockPrefabs:
   - {fileID: 11485242, guid: fac9efad0597e1c478cf0975613a8b23, type: 2}
   - {fileID: 11485242, guid: a172a2f17ed2a954684b3a6eb7567a05, type: 2}
