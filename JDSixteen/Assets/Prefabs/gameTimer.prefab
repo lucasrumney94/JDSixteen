@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11438070}
   m_Layer: 0
   m_Name: gameTimer
-  m_TagString: Untagged
+  m_TagString: NotUITimer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +40,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 15
-  changeStartTimeBy: -5
   offsetForSlider: 0.5
 --- !u!1001 &100100000
 Prefab:
