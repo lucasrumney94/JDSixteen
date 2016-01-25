@@ -31,16 +31,18 @@ public class gameTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        actualTime -= Time.deltaTime;
-        timerSlider.value = actualTime;
-        timerSlider.maxValue = startTime + offsetForSlider;
-        if (actualTime <= offsetForSlider)
+        if (!GameObject.FindGameObjectWithTag("UI").GetComponent<buttonMethods>().gameLost)
         {
-            grid.CreateNewBlockRow();
+            actualTime -= Time.deltaTime;
+            timerSlider.value = actualTime;
+            timerSlider.maxValue = startTime + offsetForSlider;
+            if (actualTime <= offsetForSlider)
+            {
+                grid.CreateNewBlockRow();
 
-            startTime = newStartTime;
-            actualTime = startTime;
+                startTime = newStartTime;
+                actualTime = startTime;
+            }
         }
     }
 
