@@ -46,7 +46,7 @@ Rigidbody2D:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6190080
 BoxCollider2D:
@@ -75,12 +75,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMousePos: {x: 0, y: 0, z: 0}
   blockRank: 12
-  mouseSnapForce: 10
-  maxSnapForce: 50
-  anchorSnapSpeed: 0.2
-  minInstantSnapDistance: 0.01
   beingDragged: 0
-  anchorPoint: {x: 0, y: 0, z: 0}
+  initialGridPosition: 
+  clearedInitialPosition: 0
 --- !u!212 &21269202
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -161,6 +158,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

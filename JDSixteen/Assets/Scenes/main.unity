@@ -217,7 +217,7 @@ MonoBehaviour:
   maxRank: 3
   mouseSnapForce: 5
   maxSnapForce: 40
-  anchorSnapSpeed: 0.2
+  anchorSnapSpeed: 0.1
   minInstantSnapDistance: 0.01
   blockPrefabs:
   - {fileID: 11485242, guid: fac9efad0597e1c478cf0975613a8b23, type: 2}
@@ -398,11 +398,11 @@ Prefab:
       objectReference: {fileID: 1029192688}
     - target: {fileID: 22421824, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22421824, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b41f24cfc367d84294964ce9e0857d6, type: 2}
@@ -506,6 +506,10 @@ Prefab:
     - target: {fileID: 434502, guid: be402a7eb2a521440aca708bb1176a43, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11438070, guid: be402a7eb2a521440aca708bb1176a43, type: 2}
+      propertyPath: startTime
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be402a7eb2a521440aca708bb1176a43, type: 2}

@@ -189,6 +189,11 @@ public class GridController : MonoBehaviour {
             {
                 for (int j = height - 1; j > 0; j--)
                 {
+                    if(gridPoints[i, j - 1] != null && gridPoints[i, j - 1].beingDragged)
+                    {
+                        gridPoints[i, j - 1].clearedInitialPosition = true;
+                        gridPoints[i, j - 1] = null;
+                    }
                     gridPoints[i, j] = gridPoints[i, j - 1];
                 }
 
