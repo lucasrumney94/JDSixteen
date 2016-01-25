@@ -10,6 +10,8 @@ TagManager:
   - UI
   - score
   - highScore
+  - ScoreHandler
+  - NotUITimer
   layers:
   - Default
   - TransparentFX

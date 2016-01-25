@@ -64,7 +64,7 @@ public class scoreHandler : MonoBehaviour {
         score = 0;
     }
 
-    void addToScore(int scoreToBeAdded)
+    public void addToScore(int scoreToBeAdded)
     {
         score += scoreToBeAdded;
     }

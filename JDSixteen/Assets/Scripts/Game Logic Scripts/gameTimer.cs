@@ -6,7 +6,7 @@ public class gameTimer : MonoBehaviour
 {
     //All times are in Seconds
     public float startTime = 15.0f;         //This sets the inital timer time
-    public float changeStartTimeBy = -5.0f;      //when changeStartTime() is called, this is the default amount it will subtract
+    //public float changeStartTimeBy = -5.0f;      //when changeStartTime() is called, this is the default amount it will subtract
     public float offsetForSlider = 5.0f;
 
     private Slider timerSlider;
@@ -34,6 +34,7 @@ public class gameTimer : MonoBehaviour
 
         actualTime -= Time.deltaTime;
         timerSlider.value = actualTime;
+        timerSlider.maxValue = startTime + offsetForSlider;
         if (actualTime <= offsetForSlider)
         {
             grid.CreateNewBlockRow();
@@ -43,9 +44,9 @@ public class gameTimer : MonoBehaviour
         }
     }
 
-    void changeStartTime()
+    public void SetStartTime(float time)
     {
-        newStartTime += changeStartTimeBy;
+        newStartTime = time;
     }
 
 }

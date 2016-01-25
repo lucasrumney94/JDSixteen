@@ -15,8 +15,14 @@ public class GridController : MonoBehaviour {
     public BlockPhysics[,] gridPoints;
     private Vector3[,] anchorPoints;
 
+    private scoreHandler scoreBoard;
+    private gameTimer timer;
+
     void Start()
     {
+        scoreBoard = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<scoreHandler>();
+        timer = GameObject.FindGameObjectWithTag("NotUITimer").GetComponent<gameTimer>();
+
         gridPoints = new BlockPhysics[width, height];
         anchorPoints = new Vector3[width, height];
         InitializeGrid();
@@ -117,6 +123,11 @@ public class GridController : MonoBehaviour {
         if(a.blockRank == b.blockRank && a.blockRank < blockPrefabs.Length)
         {
             BlockPhysics newBlock = Instantiate(blockPrefabs[a.blockRank]) as BlockPhysics;
+            if(newBlock.blockRank > maxRank)
+            {
+                maxRank = newBlock.blockRank;
+                SetTimerBasedOnMaxRank();
+            }
             if(newBlock.blockRank == blockPrefabs.Length)
             {
                 AddHighestBlockToScore(newBlock);
@@ -133,8 +144,27 @@ public class GridController : MonoBehaviour {
         }
     }
 
+    private void SetTimerBasedOnMaxRank()
+    {
+        if(maxRank < 8)
+        {
+            timer.SetStartTime(15f);
+        }
+        else if(maxRank < 12)
+        {
+            timer.SetStartTime(11f);
+        }
+        else
+        {
+            timer.SetStartTime(7f);
+        }
+    }
+
     private void AddHighestBlockToScore(BlockPhysics block)
     {
+        //Call ScoreHandler
+        scoreBoard.addToScore(100);
+
         //Play some kind of particle effect
 
 
@@ -144,40 +174,69 @@ public class GridController : MonoBehaviour {
 
     public void CreateNewBlockRow()
     {
-        for (int i = 0; i < width; i++)
+        if (CheckForGameOver())
         {
-            for (int j = height - 1; j > 0; j--)
+            return;
+        }
+        else
+        {
+            for (int i = 0; i < width; i++)
             {
-                gridPoints[i, j] = gridPoints[i, j - 1];
-            }
-
-            int newIndex = (int)Random.Range(0f, HighestRank());
-            //Check if the block to be spawned would match the rank of the one above it
-            //If so, decrease its rank by one, or if the rank is one already, increase it
-            if(gridPoints[i, 0] != null)
-            {
-                if (gridPoints[i, 0].blockRank == newIndex + 1)
+                for (int j = height - 1; j > 0; j--)
                 {
-                    if (newIndex == 0) newIndex = 1;
-                    else newIndex--;
+                    gridPoints[i, j] = gridPoints[i, j - 1];
                 }
+
+                int newIndex = (int)Random.Range(0f, HighestRank());
+                //Check if the block to be spawned would match the rank of the one above it
+                //If so, decrease its rank by one, or if the rank is one already, increase it
+                if (gridPoints[i, 0] != null)
+                {
+                    if (gridPoints[i, 0].blockRank == newIndex + 1)
+                    {
+                        if (newIndex == 0) newIndex = 1;
+                        else newIndex--;
+                    }
+                }
+                BlockPhysics newBlock = Instantiate(blockPrefabs[newIndex]);
+                float xPos = (float)i - (((float)width - 1f) / 2f);
+                float yPos = (-(float)height / 2f) - 1f;
+                newBlock.transform.position = new Vector3(xPos, yPos);
+                gridPoints[i, 0] = newBlock;
             }
-            BlockPhysics newBlock = Instantiate(blockPrefabs[newIndex]);
-            float xPos = (float)i - (((float)width - 1f) / 2f);
-            float yPos = (-(float)height / 2f) - 1f;
-            newBlock.transform.position = new Vector3(xPos, yPos);
-            gridPoints[i, 0] = newBlock;
         }
     }
 
-    private void CheckForGameOver()
+    private bool CheckForGameOver()
     {
         for(int i = 0; i < width; i++)
         {
             if(gridPoints[i, height - 1] != null)
             {
+                Debug.Log("Checked for game over");
+                StartCoroutine(TotalBoardScore());
                 //Triggers Bool in UI that activates the Game Over UI
                 GameObject.FindGameObjectWithTag("UI").GetComponent<buttonMethods>().gameLost = true;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    IEnumerator TotalBoardScore()
+    {
+        Debug.Log("Totaling board score...");
+        for(int j = height - 1; j >= 0; j--)
+        {
+            for(int i = 0; i < width; i++)
+            {
+                if(gridPoints[i, j] != null)
+                {
+                    yield return new WaitForSeconds(0.15f);
+                    //Debug.Log(gridPoints[i, j].blockRank, gridPoints[i, j].gameObject);
+                    Destroy(gridPoints[i, j].gameObject);
+                    scoreBoard.addToScore(gridPoints[i, j].blockRank);
+                }
             }
         }
     }
@@ -185,7 +244,22 @@ public class GridController : MonoBehaviour {
     //Check score handler to see what the highest spawned in a new block row can be
     private int HighestRank()
     {
-        return maxRank;
+        if(maxRank < 6)
+        {
+            return 3;
+        }
+        else if (maxRank < 9)
+        {
+            return 5;
+        }
+        else if (maxRank < 12)
+        {
+            return 7;
+        }
+        else
+        {
+            return 9;
+        }
     }
 
     private void InitializeGrid()

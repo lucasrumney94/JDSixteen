@@ -21,7 +21,7 @@ public class buttonMethods : MonoBehaviour
     {
         if (gameLost)
         {
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
             youLostMenu.enabled = true;
         }
     }
