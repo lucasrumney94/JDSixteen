@@ -10,6 +10,11 @@ public class GridController : MonoBehaviour {
     public float scale = 1f;
     public int maxRank = 3;
 
+    public float mouseSnapForce = 5f;
+    public float maxSnapForce = 40f;
+    public float anchorSnapSpeed = 0.2f;
+    public float minInstantSnapDistance = 0.01f;
+
     //These should be ordered correctly, block rank increases are based on the order of this list
     public BlockPhysics[] blockPrefabs;
     public BlockPhysics[,] gridPoints;
@@ -76,8 +81,8 @@ public class GridController : MonoBehaviour {
                     if(block.beingDragged == false)
                     {
                         //Apply a translation to keep the block stuck to anchor point
-                        block.transform.position = Vector3.Lerp(block.transform.position, anchor, block.anchorSnapSpeed);
-                        if (Vector3.Distance(block.transform.position, anchor) < block.minInstantSnapDistance)
+                        block.transform.position = Vector3.Lerp(block.transform.position, anchor, anchorSnapSpeed);
+                        if (Vector3.Distance(block.transform.position, anchor) < minInstantSnapDistance)
                         {
                             block.transform.position = anchor;
                         }

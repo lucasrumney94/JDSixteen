@@ -7,10 +7,10 @@ public class BlockPhysics : MonoBehaviour {
 
     public int blockRank = 1;
 
-    public float mouseSnapForce = 5f;
-    public float maxSnapForce = 50f;
-    public float anchorSnapSpeed = 0.2f;
-    public float minInstantSnapDistance = 0.01f;
+    private float mouseSnapForce = 5f;
+    private float maxSnapForce = 50f;
+    private float anchorSnapSpeed = 0.2f;
+    private float minInstantSnapDistance = 0.01f;
 
     public bool beingDragged;
     public int[] initialGridPosition;
@@ -22,6 +22,11 @@ public class BlockPhysics : MonoBehaviour {
     void Start()
     {
         grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<GridController>();
+
+        mouseSnapForce = grid.mouseSnapForce;
+        maxSnapForce = grid.maxSnapForce;
+        anchorSnapSpeed = grid.anchorSnapSpeed;
+        minInstantSnapDistance = grid.minInstantSnapDistance;
     }
 
     void FixedUpdate()
