@@ -50,15 +50,15 @@ public class BlockPhysics : MonoBehaviour {
 
         //Check for clearing initial position and combination
         int[] gridPos = GridPosition();
-        if (gridPos[0] != initialGridPosition[0] || gridPos[1] != initialGridPosition[1])
+        if (gridPos[0] != initialGridPosition[0])// || gridPos[1] != initialGridPosition[1])
         {
             if (!clearedInitialPosition)
             {
                 grid.SetBlockGridPosition(initialGridPosition[0], initialGridPosition[1], null);
                 clearedInitialPosition = true;
             }
-            grid.CheckBlockGridCombination(gridPos[0], gridPos[1], this);
         }
+        grid.CheckBlockGridCombination(gridPos[0], gridPos[1], this);
     }
 
     void OnMouseUp()
@@ -66,6 +66,12 @@ public class BlockPhysics : MonoBehaviour {
         beingDragged = false;
         GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        if (!clearedInitialPosition)
+        {
+            grid.SetBlockGridPosition(initialGridPosition[0], initialGridPosition[1], null);
+            clearedInitialPosition = true;
+        }
 
         //Announce position to GridController
         int[] gridPos = GridPosition();
