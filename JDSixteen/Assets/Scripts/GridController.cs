@@ -269,6 +269,11 @@ public class GridController : MonoBehaviour {
         }
     }
 
+    public void AddBombedBlocksToScore(int score)
+    {
+        scoreBoard.addToScore(score);
+    }
+
     //Check score handler to see what the highest spawned in a new block row can be
     private int HighestRank()
     {

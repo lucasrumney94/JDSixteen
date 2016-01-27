@@ -7,11 +7,13 @@ public class BombPhysics : BlockPhysics {
     
     public void Explode()
     {
+        int score = 0;
+
         int[] gridPos = GridPosition();
-        int xMin = Mathf.Clamp(gridPos[0] - explosionRange, 0, grid.width);
-        int xMax = Mathf.Clamp(gridPos[0] + explosionRange, 0, grid.width);
-        int yMin = Mathf.Clamp(gridPos[1] - explosionRange, 0, grid.height);
-        int yMax = Mathf.Clamp(gridPos[1] + explosionRange, 0, grid.height);
+        int xMin = Mathf.Clamp(gridPos[0] - explosionRange, 0, grid.width - 1);
+        int xMax = Mathf.Clamp(gridPos[0] + explosionRange, 0, grid.width - 1);
+        int yMin = Mathf.Clamp(gridPos[1] - explosionRange, 0, grid.height - 1);
+        int yMax = Mathf.Clamp(gridPos[1] + explosionRange, 0, grid.height - 1);
         for (int i = xMin; i <= xMax; i++)
         {
             for(int j = yMin; j <= yMax; j++)
@@ -22,12 +24,15 @@ public class BombPhysics : BlockPhysics {
                 {
                     if(grid.gridPoints[i, j] != null)
                     {
+                        score += grid.gridPoints[i, j].blockRank;
                         Destroy(grid.gridPoints[i, j].gameObject);
                         grid.gridPoints[i, j] = null;
                     }
                 }
             }
         }
+
+        grid.AddBombedBlocksToScore(score);
     }
 
     void OnDestroy()
