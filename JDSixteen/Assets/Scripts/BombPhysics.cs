@@ -34,9 +34,4 @@ public class BombPhysics : BlockPhysics {
 
         grid.AddBombedBlocksToScore(score);
     }
-
-    void OnDestroy()
-    {
-        //Play special bomb animation
-    }
 }
