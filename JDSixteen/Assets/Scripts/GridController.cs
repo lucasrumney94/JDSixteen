@@ -9,6 +9,8 @@ public class GridController : MonoBehaviour {
     public int height = 6;
     public float scale = 1f;
     public int maxRank = 3;
+    [Range(0f, 1f)]
+    public float specialBlockChance = 0.1f;
 
     public float mouseSnapForce = 5f;
     public float maxSnapForce = 40f;
@@ -17,6 +19,7 @@ public class GridController : MonoBehaviour {
 
     //These should be ordered correctly, block rank increases are based on the order of this list
     public BlockPhysics[] blockPrefabs;
+    public BlockPhysics[] specialBlockPrefabs;
     public BlockPhysics[,] gridPoints;
     private Vector3[,] anchorPoints;
 
@@ -125,11 +128,16 @@ public class GridController : MonoBehaviour {
     //Instantiates a new block from the combination of a and b, removes a and b from the scene, and returns the created object
     private BlockPhysics CombineBlocks(BlockPhysics a, BlockPhysics b)
     {
-        if(a.GetType() == typeof(BombPhysics))
+        BombPhysics bombA;
+        BombPhysics bombB;
+        if ((bombA = a as BombPhysics) && (bombB = b as BombPhysics))
         {
-
+            bombA.Explode();
+            Destroy(bombA.gameObject);
+            Destroy(bombB.gameObject);
+            return null;
         }
-        if(a.blockRank == b.blockRank && a.blockRank < blockPrefabs.Length)
+        else if(a.blockRank == b.blockRank && a.blockRank < blockPrefabs.Length)
         {
             BlockPhysics newBlock = Instantiate(blockPrefabs[a.blockRank]) as BlockPhysics;
             if(newBlock.blockRank > maxRank)
@@ -202,7 +210,7 @@ public class GridController : MonoBehaviour {
                     gridPoints[i, j] = gridPoints[i, j - 1];
                 }
 
-                int newIndex = (int)Random.Range(0f, HighestRank());
+                int newIndex = Random.Range(0, HighestRank());
                 //Check if the block to be spawned would match the rank of the one above it
                 //If so, decrease its rank by one, or if the rank is one already, increase it
                 if (gridPoints[i, 0] != null)
@@ -213,7 +221,15 @@ public class GridController : MonoBehaviour {
                         else newIndex--;
                     }
                 }
-                BlockPhysics newBlock = Instantiate(blockPrefabs[newIndex]);
+                BlockPhysics newBlock;
+                if(Random.value > specialBlockChance)
+                {
+                    newBlock = Instantiate(blockPrefabs[newIndex]);
+                }
+                else
+                {
+                    newBlock = Instantiate(specialBlockPrefabs[Random.Range(0, specialBlockPrefabs.Length)]);
+                }
                 float xPos = (float)i - (((float)width - 1f) / 2f);
                 float yPos = (-(float)height / 2f) - 1f;
                 newBlock.transform.position = new Vector3(xPos, yPos);

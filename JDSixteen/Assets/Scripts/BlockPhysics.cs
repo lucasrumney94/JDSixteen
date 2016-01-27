@@ -9,15 +9,13 @@ public class BlockPhysics : MonoBehaviour {
 
     private float mouseSnapForce = 5f;
     private float maxSnapForce = 50f;
-    private float anchorSnapSpeed = 0.2f;
-    private float minInstantSnapDistance = 0.01f;
 
     public bool beingDragged;
     public int[] initialGridPosition;
     public bool clearedInitialPosition;
 
     //public Vector3 anchorPoint;
-    private GridController grid;
+    public GridController grid;
 
     void Start()
     {
@@ -25,8 +23,6 @@ public class BlockPhysics : MonoBehaviour {
 
         mouseSnapForce = grid.mouseSnapForce;
         maxSnapForce = grid.maxSnapForce;
-        anchorSnapSpeed = grid.anchorSnapSpeed;
-        minInstantSnapDistance = grid.minInstantSnapDistance;
     }
 
     void FixedUpdate()
@@ -78,6 +74,11 @@ public class BlockPhysics : MonoBehaviour {
         grid.SetBlockGridPosition(gridPos[0], gridPos[1], this);
     }
 
+    void OnDestroy()
+    {
+        //Play particle effects here
+    }
+
     private void PullToMouse()
     {
         //Find the position to be attracted to
@@ -94,7 +95,7 @@ public class BlockPhysics : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = toDragPos;
     }
 
-    private int[] GridPosition()
+    public int[] GridPosition()
     {
         int gridX = (int)Mathf.Floor(transform.position.x);
         int gridY = (int)Mathf.Floor(transform.position.y);
