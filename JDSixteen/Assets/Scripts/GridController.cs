@@ -214,21 +214,18 @@ public class GridController : MonoBehaviour {
                 BlockPhysics newBlock;
                 //Check if the block to be spawned would match the rank of the one above it
                 //If so, decrease its rank by one, or if the rank is one already, increase it
-                if (gridPoints[i, 0] != null)
+                if (Random.value < specialBlockChance && (gridPoints[i, 0] == null || (gridPoints[i, 0] != null && gridPoints[i, 0].blockRank != 0)))
                 {
-                    if (gridPoints[i, 0].blockRank == newIndex + 1)
+                    newBlock = Instantiate(specialBlockPrefabs[Random.Range(0, specialBlockPrefabs.Length)]);
+                }
+                else
+                {
+                    if (gridPoints[i, 0] != null && gridPoints[i, 0].blockRank == newIndex + 1)
                     {
                         if (newIndex == 0) newIndex = 1;
                         else newIndex--;
                     }
-                }
-                if(Random.value > specialBlockChance)
-                {
                     newBlock = Instantiate(blockPrefabs[newIndex]);
-                }
-                else
-                {
-                    newBlock = Instantiate(specialBlockPrefabs[Random.Range(0, specialBlockPrefabs.Length)]);
                 }
                 float xPos = (float)i - (((float)width - 1f) / 2f);
                 float yPos = (-(float)height / 2f) - 1f;

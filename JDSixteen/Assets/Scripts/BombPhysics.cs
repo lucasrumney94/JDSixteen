@@ -12,9 +12,9 @@ public class BombPhysics : BlockPhysics {
         int xMax = Mathf.Clamp(gridPos[0] + explosionRange, 0, grid.width);
         int yMin = Mathf.Clamp(gridPos[1] - explosionRange, 0, grid.height);
         int yMax = Mathf.Clamp(gridPos[1] + explosionRange, 0, grid.height);
-        for (int i = xMin; i < xMax; i++)
+        for (int i = xMin; i <= xMax; i++)
         {
-            for(int j = yMin; j < yMax; j++)
+            for(int j = yMin; j <= yMax; j++)
             {
                 //Check if index is too far from gridpos
                 int orthoDistance = Mathf.Abs(i - gridPos[0]) + Mathf.Abs(j - gridPos[1]);
