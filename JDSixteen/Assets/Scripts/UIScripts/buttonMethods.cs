@@ -10,15 +10,21 @@ public class buttonMethods : MonoBehaviour
     public bool paused = false;
     public bool gameLost = false;
 
+    private scoreHandler myScoreHandler;
+
     // Use this for initialization
     void Start()
     {
 
     }
-
+    void OnLevelWasLoaded(int level)
+    {
+        //myScoreHandler = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<scoreHandler>();
+    }
     // Update is called once per frame
     void Update()
     {
+        myScoreHandler = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<scoreHandler>();
         if (gameLost)
         {
             //Time.timeScale = 0.0f;
@@ -55,6 +61,7 @@ public class buttonMethods : MonoBehaviour
     {
         gameLost = false;
         Time.timeScale = 1.0f;
+        myScoreHandler.score = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
