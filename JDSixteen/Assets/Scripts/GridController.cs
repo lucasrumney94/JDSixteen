@@ -169,11 +169,11 @@ public class GridController : MonoBehaviour {
         }
         else if(maxRank < 12)
         {
-            timer.SetStartTime(11f);
+            timer.SetStartTime(12f);
         }
         else
         {
-            timer.SetStartTime(7f);
+            timer.SetStartTime(10f);
         }
     }
 
@@ -283,15 +283,15 @@ public class GridController : MonoBehaviour {
         }
         else if (maxRank < 9)
         {
-            return 5;
+            return 6;
         }
         else if (maxRank < 12)
         {
-            return 7;
+            return 9;
         }
         else
         {
-            return 9;
+            return 12;
         }
     }
 

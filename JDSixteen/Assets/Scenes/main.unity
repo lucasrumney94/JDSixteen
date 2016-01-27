@@ -215,7 +215,7 @@ MonoBehaviour:
   height: 6
   scale: 1
   maxRank: 3
-  specialBlockChance: 0.21
+  specialBlockChance: 0.06
   mouseSnapForce: 5
   maxSnapForce: 40
   anchorSnapSpeed: 0.1
