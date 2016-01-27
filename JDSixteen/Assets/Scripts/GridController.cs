@@ -119,12 +119,16 @@ public class GridController : MonoBehaviour {
         {
             gridPoints[x, y] = block;
         }
-        else Debug.Log("Tried to place block on top of another block!", block);
+        else CheckBlockGridCombination(x, y, block);
     }
 
     //Instantiates a new block from the combination of a and b, removes a and b from the scene, and returns the created object
     private BlockPhysics CombineBlocks(BlockPhysics a, BlockPhysics b)
     {
+        if(a.GetType() == typeof(BombPhysics))
+        {
+
+        }
         if(a.blockRank == b.blockRank && a.blockRank < blockPrefabs.Length)
         {
             BlockPhysics newBlock = Instantiate(blockPrefabs[a.blockRank]) as BlockPhysics;
