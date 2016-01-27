@@ -211,6 +211,7 @@ public class GridController : MonoBehaviour {
                 }
 
                 int newIndex = Random.Range(0, HighestRank());
+                BlockPhysics newBlock;
                 //Check if the block to be spawned would match the rank of the one above it
                 //If so, decrease its rank by one, or if the rank is one already, increase it
                 if (gridPoints[i, 0] != null)
@@ -221,7 +222,6 @@ public class GridController : MonoBehaviour {
                         else newIndex--;
                     }
                 }
-                BlockPhysics newBlock;
                 if(Random.value > specialBlockChance)
                 {
                     newBlock = Instantiate(blockPrefabs[newIndex]);

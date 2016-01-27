@@ -78,6 +78,8 @@ MonoBehaviour:
   beingDragged: 0
   initialGridPosition: 
   clearedInitialPosition: 0
+  grid: {fileID: 0}
+  explosionRange: 2
 --- !u!212 &21269202
 SpriteRenderer:
   m_ObjectHideFlags: 1
