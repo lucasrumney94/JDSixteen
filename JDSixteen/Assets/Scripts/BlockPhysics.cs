@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BlockPhysics : MonoBehaviour {
@@ -16,6 +16,8 @@ public class BlockPhysics : MonoBehaviour {
 
     //public Vector3 anchorPoint;
     public GridController grid;
+
+    public GameObject blockCombineParticleSystem;
 
     void Start()
     {
@@ -77,6 +79,8 @@ public class BlockPhysics : MonoBehaviour {
     void OnDestroy()
     {
         //Play particle effects here
+        GameObject.Instantiate(blockCombineParticleSystem, gameObject.transform.position + new Vector3(0f, 0f, -1f), Quaternion.identity);
+
     }
 
     private void PullToMouse()
