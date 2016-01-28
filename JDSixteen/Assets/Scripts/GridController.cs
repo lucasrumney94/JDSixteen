@@ -110,6 +110,11 @@ public class GridController : MonoBehaviour {
                 BlockPhysics newBlock = CombineBlocks(gridPoints[x, y], block);
                 gridPoints[x, y] = newBlock;
             }
+            else
+            {
+                Debug.Log("Blocks of different ranks are in the same space! " + block.gameObject.name + " at " + x + ", " + y, block.gameObject);
+                block.transform.position = anchorPoints[x, y + 1];
+            }
         }
     }
 

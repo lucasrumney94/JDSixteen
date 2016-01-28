@@ -27,9 +27,17 @@ public class BlockPhysics : MonoBehaviour {
         maxSnapForce = grid.maxSnapForce;
     }
 
-    void FixedUpdate()
-    {
-    }
+    //void Update()
+    //{
+    //    if(beingDragged == false)
+    //    {
+    //        int[] expectedCurrentPos = GridPosition();
+    //        if (grid.gridPoints[expectedCurrentPos[0], expectedCurrentPos[1]] != this)// && grid.gridPoints[expectedCurrentPos[0], grid.gridPoints[expectedCurrentPos[1]])
+    //        {
+    //            grid.SetBlockGridPosition(expectedCurrentPos[0], expectedCurrentPos[1], this);
+    //        }
+    //    }
+    //}
 
     void OnMouseDown()
     {
@@ -105,6 +113,8 @@ public class BlockPhysics : MonoBehaviour {
         int gridY = (int)Mathf.Floor(transform.position.y);
         gridX = gridX + (grid.width / 2);
         gridY = gridY + (grid.height / 2);
+        gridX = Mathf.Clamp(gridX, 0, grid.width - 1);
+        gridY = Mathf.Clamp(gridY, 0, grid.height - 1);
         return new int[2] { gridX, gridY };
     }
 
