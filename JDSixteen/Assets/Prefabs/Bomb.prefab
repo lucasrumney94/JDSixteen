@@ -79,6 +79,8 @@ MonoBehaviour:
   initialGridPosition: 
   clearedInitialPosition: 0
   grid: {fileID: 0}
+  blockCombineParticleSystem: {fileID: 192236, guid: 9810c0038d1568f45bfd6db6fa5ee37c,
+    type: 2}
   explosionRange: 2
 --- !u!212 &21269202
 SpriteRenderer:
@@ -174,6 +176,10 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blockCombineParticleSystem
+      value: 
+      objectReference: {fileID: 192236, guid: 9810c0038d1568f45bfd6db6fa5ee37c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179618}
